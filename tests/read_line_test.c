@@ -1,4 +1,4 @@
-// testing read_line from main.c
+// testing read_line function
 
 #include <stdio.h>
 #include <stdlib.h>
