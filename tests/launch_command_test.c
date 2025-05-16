@@ -1,4 +1,4 @@
-// testing run_command function
+// testing launch_command function
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,7 +6,7 @@
 // function declarations
 char* read_line(void);
 char** parse_line(char* line);
-int run_command(char** args);
+int launch_command(char** args);
 
 int main() {
   // get user input
@@ -14,9 +14,9 @@ int main() {
   char* line = read_line();        // store line
   char** args = parse_line(line);  // parse line into tokens
 
-  // run command
+  // execute command
   if (args[0] != NULL) {
-    run_command(args);
+    launch_command(args);
   }
 
   // cleanup memory

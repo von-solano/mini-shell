@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-int run_command(char** args){
+int launch_command(char** args){
 
     pid_t pid, wpid; // initialise process id's
     int status;
