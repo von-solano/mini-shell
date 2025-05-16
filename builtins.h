@@ -3,8 +3,8 @@
 
 // function declarations for builtin mini shell commands
 int ms_cd(char** args);
-int ms_help(char** args);
-int ms_exit(char** args);
+int ms_help();
+int ms_exit();
 
 // external declarations
 extern char *builtin_str[];

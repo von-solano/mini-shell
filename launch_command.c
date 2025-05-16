@@ -4,11 +4,9 @@
 #include <sys/wait.h>
 
 int launch_command(char** args){
-
-    pid_t pid, wpid; // initialise process id's
+    
     int status;
-
-    pid = fork(); // create new process
+    pid_t pid = fork(); // create new process
 
     if(pid < 0){
         // fork failed...
@@ -23,7 +21,7 @@ int launch_command(char** args){
     } else {
         // parent process
         do {
-            wpid = waitpid(pid, &status, WUNTRACED); // wait for child process to finish
+            waitpid(pid, &status, WUNTRACED); // wait for child process to finish
         } while(!WIFEXITED(status) && !WIFSIGNALED(status));
         // loop exits normally or gets killed by signal
     }

@@ -15,7 +15,7 @@ int ms_cd(char** args){
 }
 
 // get help message
-int ms_help(char** args){
+int ms_help(){
     
     printf("\nVon's Mini Shell\n");
     printf("Type in commands and arguments, and press enter.\n");
@@ -30,7 +30,7 @@ int ms_help(char** args){
 }
 
 // exit shell
-int ms_exit(char** args){
+int ms_exit(){
     return 0; // signal to shell to stop
 }
 

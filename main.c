@@ -33,7 +33,7 @@ void ms_loop(void) {
 }
 
 // main function
-int main(int argc, char** argv) {
+int main() {
 
   printf("Welcome to Von's Mini Shell! Type 'help' to get started!\n");  
   // run mini shell loop
