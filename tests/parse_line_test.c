@@ -22,6 +22,9 @@ int main(){
 
     // cleanup memory
     free(line);
+    for (int i = 0; tokens[i] != NULL; i++) {
+        free(tokens[i]);
+    }
     free(tokens);
 
     return 0;

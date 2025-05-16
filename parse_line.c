@@ -15,14 +15,14 @@ char **parse_line(char* line){
     // check if memory allocation failed
     if(!tokens){
         fprintf(stderr, "ms: allocation error\n");
-        exit(1); // exit shell successfully
+        exit(EXIT_FAILURE); // exit shell successfully
     }
 
     char* token = strtok(line, DELIMITERS); // get first token
 
     // loop through line and extract tokens
     while(token != NULL){
-        tokens[index] = token; // store current token in token array
+        tokens[index] = strdup(token); // store copy of current token in token array (so can be freed later)
         index++; // increment position in token array
 
         // if token array is full
@@ -33,7 +33,7 @@ char **parse_line(char* line){
             // check if reallocation failed
             if(!tokens){
             fprintf(stderr, "ms: allocation error\n");
-            exit(1); // exit shell successfully
+            exit(EXIT_FAILURE); // exit shell successfully
             }
         }
 
