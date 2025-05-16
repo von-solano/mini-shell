@@ -10,7 +10,7 @@ int main(){
 
     char *line = read_line(); // call function and store line
 
-    printf("You entered: %s\n", line); // display results
+    printf("You entered: %s", line); // display results
     free(line); // cleanup memory
 
     return 0;

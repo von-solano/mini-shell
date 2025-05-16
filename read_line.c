@@ -11,11 +11,11 @@ char *read_line(void){
     if(getline(&line, &buffer_size, stdin) == -1){
         // if reading failed beacuse reached the end-of-file
         if(feof(stdin)){
-            exit(0); // exit shell successfully
+            exit(EXIT_SUCCESS); // exit shell successfully
         } else {
             // if reading failed because of some other error
             perror("readline");
-            exit(1); // exit shell with error code
+            exit(EXIT_FAILURE); // exit shell with error code
         }
     }
     return line; // return input line
