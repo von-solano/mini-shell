@@ -11,6 +11,11 @@
 #include "read_line.h"
 #include "run_command.h"
 
+// function to print mini shell prompt with colour and info
+void print_prompt(){
+    printf("\033[1;34mmini_shell>\033[0m ");
+}
+
 // loop structure for mini shell
 void ms_loop(void) {
   char* line;
@@ -19,7 +24,7 @@ void ms_loop(void) {
 
   // do while-loop (check status variable after)
   do {
-    printf("mini_shell> ");
+    print_prompt();
     line = read_line();          // read in line from user
     args = parse_line(line);     // split line into command and arguments
     status = run_command(args);  // execute command
