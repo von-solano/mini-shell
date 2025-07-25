@@ -1,4 +1,4 @@
-# Mini Shell
+# 🐚 Mini Shell
 
 Lightweight Unix-style mini shell written in C, designed to replicate basic shell functions!
 
@@ -14,6 +14,8 @@ Lightweight Unix-style mini shell written in C, designed to replicate basic shel
     Use '<' and '>' to redirect stdin and stdout
 - **Coloured Prompts:**
     Custom coloured 'mini-shell>' prompt for enhanced UX
+- **Modular Design:**
+    Seperated functions into clean C module ('parse_line', 'run_command', 'handle_redirection')
 
 ## 🛠️ Compilation
 1. make
