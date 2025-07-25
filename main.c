@@ -11,7 +11,7 @@
 #include "read_line.h"
 #include "run_command.h"
 
-// function to print mini shell prompt with colour and info
+// function to print mini shell prompt with colour
 void print_prompt(){
     printf("\033[1;34mmini_shell>\033[0m ");
 }

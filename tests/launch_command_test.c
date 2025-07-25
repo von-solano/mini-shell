@@ -7,6 +7,7 @@
 char* read_line(void);
 char** parse_line(char* line);
 int launch_command(char** args);
+void handle_redirection(char **args, char **input_file, char **output_file);
 
 int main() {
   // get user input
