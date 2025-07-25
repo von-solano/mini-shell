@@ -40,7 +40,7 @@ void ms_loop(void) {
 // main function
 int main() {
 
-  printf("Welcome to Von's Mini Shell! Type 'help' to get started!\n");  
+  printf("\nWelcome to Von's Mini Shell! Type 'help' to get started!\n");  
   // run mini shell loop
   ms_loop();
 
