@@ -21,7 +21,7 @@ int launch_command(char **args) {
 
   if (pid < 0) {
     // if fork failed
-    perror("fork failed!");
+    fprintf(stderr, "ms: error forking process\n");
     exit(EXIT_FAILURE);
   } else if (pid == 0) {
     // in child process

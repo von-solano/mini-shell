@@ -1,5 +1,3 @@
-// entry point to mini shell
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,9 +10,7 @@
 #include "run_command.h"
 
 // function to print mini shell prompt with colour
-void print_prompt(){
-    printf("\033[1;34mmini_shell>\033[0m ");
-}
+void print_prompt() { printf("\033[1;34mmini_shell>\033[0m "); }
 
 // loop structure for mini shell
 void ms_loop(void) {
@@ -31,7 +27,10 @@ void ms_loop(void) {
 
     // free variables
     free(line);
-    if (args) {
+    if (args){
+      for(int i = 0; args[i] != NULL; i++){
+        free(args[i]);
+      }
       free(args);
     }
   } while (status);  // loop until status is 0
@@ -39,8 +38,7 @@ void ms_loop(void) {
 
 // main function
 int main() {
-
-  printf("\nWelcome to Von's Mini Shell! Type 'help' to get started!\n");  
+  printf("\nWelcome to Von's Mini Shell! Type 'help' to get started!\n");
   // run mini shell loop
   ms_loop();
 
