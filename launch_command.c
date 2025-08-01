@@ -15,7 +15,7 @@ int launch_command(char **args) {
   char *output_file = NULL;
 
   // handling redirection
-  handle_redirection(args, &input_file, &output_file);
+  if(!handle_redirection(args, &input_file, &output_file)) return 1;
 
   pid_t pid = fork();  // create new process
 
