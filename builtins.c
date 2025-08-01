@@ -5,10 +5,10 @@
 // change directory
 int ms_cd(char** args){
     if(args[1] == NULL){
-        fprintf(stderr, "ms: expected argument to \"cd\"\n");
+        fprintf(stderr, "ms: expected argument to \"cd\"\n"); // missing argument
     } else {
         if(chdir(args[1]) != 0){
-            perror("ms");
+            perror("ms"); // no such file or directory
         }
     }
     return 1; // keep shell running
