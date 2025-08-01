@@ -15,11 +15,12 @@ char** parse_line(char* line) {
 
   // check if memory allocation failed
   if (!tokens) {
-    fprintf(stderr, "ms: allocation error\n");
+    fprintf(stderr, "ms: memory allocation error\n");
     exit(EXIT_FAILURE);  // exit shell successfully
   }
 
-  char* token = strtok(line, DELIMITERS);  // get first token
+  char* saveptr; // save state for strtok_r
+  char* token = strtok_r(line, DELIMITERS, &saveptr);  // get first token
 
   // loop through line and extract tokens
   while (token != NULL) {
@@ -33,11 +34,11 @@ char** parse_line(char* line) {
 
       // check if reallocation failed
       if (!tokens) {
-        fprintf(stderr, "ms: allocation error\n");
+        fprintf(stderr, "ms: memory allocation error\n");
         exit(EXIT_FAILURE);  // exit shell successfully
       }
     }
-    token = strtok(NULL, DELIMITERS);  // get next token
+    token = strtok_r(NULL, DELIMITERS, &saveptr);  // get next token
   }
 
   tokens[index] = NULL;  // terminate tokens array
