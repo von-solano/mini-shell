@@ -35,12 +35,19 @@ char ***parse_pipeline(char *line) {
     exit(EXIT_FAILURE);
   }
 
+  // check syntax of pipe (no pipes at start or end)
+  if(line[0] == '|' || line[strlen(line)-1] == '|'){
+    fprintf(stderr, RED "ms: " COLOUR_RESET "syntax error near unexpected token '|'\n");
+    return NULL;
+  }
+
   // tokenise line by pipes '|'
   char *segment = strtok(line, "|");
 
   while (segment != NULL) {
     while (*segment == ' ') segment++;  // remove leading whitespaces
 
+  // check missing commands
   if(*segment == '\0'){
     fprintf(stderr, RED "ms: " COLOUR_RESET "syntax error: missing command near '|'\n");
     free_pipeline(commands);
