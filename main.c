@@ -31,8 +31,7 @@ void ms_loop(void) {
     if(strchr(line, '|') != NULL){
       pipeline = parse_pipeline(line);
       if(pipeline){
-        status = execute_pipeline(pipeline);
-        free_pipeline(pipeline);
+        execute_pipeline(pipeline);
       } else {
         status = 1; // keep shell running if failed
       }
@@ -49,7 +48,14 @@ void ms_loop(void) {
         free(args[i]);
       }
       free(args);
+      args = NULL;
     }
+
+    if(pipeline){
+      free_pipeline(pipeline);
+      pipeline = NULL;
+    }
+
   } while (status);  // loop until status is 0
 }
 
