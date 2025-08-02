@@ -1,6 +1,6 @@
 # 🐚 Mini Shell
 
-Lightweight Unix-style mini shell written in C, designed to replicate basic shell functions!
+A Lightweight Unix-style mini shell written in C, designed to replicate basic shell functionality!
 
 ---
 
@@ -11,32 +11,33 @@ Lightweight Unix-style mini shell written in C, designed to replicate basic shel
 
 ## ✅ Features
 - **Command Execution:**
-    Runs standard Unix commands with arguments (e.g. 'echo hello world', 'ls -l')
+    Run standard Unix commands with arguments. (e.g. echo hello world, ls -l)
 
 - **Builtin Commands:**
-    Supports 'cd', 'exit', and 'help'
+    Supports 'cd', 'exit', and 'help'.
 
 - **Input/Output Redirection:**
-    Use '<' and '>' to redirect stdin and stdout
+    Use '<' and '>' to redirect stdin and stdout. (e.g. sort < unsorted.txt > sorted.txt)
+
+- **Pipelines:**
+    Chain commands using pipe operator '|'. (e.g. ls | grep .c | sort)
 
 - **Coloured Prompts:**
-    Custom coloured 'mini-shell>' prompt for enhanced UX
+    Custom bold-coloured 'mini-shell>' prompt and with colour-coded error messages for better UX.
     
 - **Modular Design:**
-    Seperated functions into clean C module ('parse_line', 'run_command', 'handle_redirection')
+    Seperated functions into clean C modules: 
+    parse_line, run_command, handle_redirection, etc.
 
 ---
 
-## 🛠️ Compilation
+## 🛠️ Compilation & Usage
 1. make
 2. ./mini-shell
 
 ---
 
 ## 📚 Future Improvements
-- **Implement Pipelines:** Execute chained commands using Unix pipes (|)
 - **Background Execution:** Manage background jobs (&)
 - **Tab Completion:** Autocomplete commands and filenames for better UX
 - **Signal Handling:** Handle signals such as SIGINT and SIGSTP
-
-
