@@ -1,6 +1,7 @@
 #ifndef BUILTINS_H
 #define BUILTINS_H
 
+#define BOLD "\033[1;37m"
 #define RED "\033[1;31m"
 #define COLOUR_RESET "\033[0m"
 

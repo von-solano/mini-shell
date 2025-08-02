@@ -13,6 +13,7 @@
 #include "run_command.h"
 
 #define BLUE "\033[1;34m"
+#define BOLD "\033[1;37m"
 #define COLOUR_RESET "\033[0m"
 
 // function to print mini shell prompt with colour
@@ -64,9 +65,9 @@ void ms_loop(void) {
 
 // main function
 int main() {
-  printf("\nWelcome to Von's Mini Shell! Type 'help' to get started!\n");
+  printf( BOLD "\nWelcome to Von's Mini Shell! Type 'help' to get started!\n");
   // run mini shell loop
   ms_loop();
-  printf("Mini-Shell Exiting. Goodbye!\n\n");
+  printf( BOLD "Exiting... Goodbye!\n\n");
   return 0;
 }

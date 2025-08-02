@@ -17,15 +17,15 @@ int ms_cd(char** args){
 // get help message
 int ms_help(){
     
-    printf("\nVon's Mini Shell\n");
-    printf("Type in commands and arguments, and press enter.\n");
-    printf("The following are built in:\n");
+    printf( BOLD "\nVon's Mini Shell\n");
+    printf( BOLD "Type in commands and arguments, and press enter.\n");
+    printf( BOLD "The following are built in:\n");
 
     for(int i = 0; i < ms_num_builtins(); i++){
-        printf(" %s\n", builtin_str[i]);
+        printf( BOLD " %s\n", builtin_str[i]);
     }
 
-    printf("Use the 'man' command for information about other commands!\n\n");
+    printf( BOLD "Use the 'man' command for information about other commands!\n\n");
     return 1; // keep shell running
 }
 
