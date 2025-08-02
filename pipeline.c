@@ -8,6 +8,20 @@
 
 #define PIPE_BUFFER_SIZE 8  // set initial pipe buffer size
 
+// free commands in pipeline
+void free_pipeline(char ***tokens){
+  if(!tokens) return; // empty
+  
+  // clean up memory
+  for (int i = 0; tokens[i] != NULL; i++) {
+    for (int j = 0; tokens[i][j] != NULL; j++) {
+      free(tokens[i][j]);
+    }
+    free(tokens[i]);
+  }
+  free(tokens);
+}
+
 // parse pipeline
 char ***parse_pipeline(char *line) {
   int num_cmds = 0;
@@ -28,11 +42,18 @@ char ***parse_pipeline(char *line) {
 
   if(*segment == '\0'){
     fprintf(stderr, "ms: syntax error: missing command near '|'\n");
+    free_pipeline(commands);
     return NULL;
   }
 
     // parse command segment into parse_line function
     char **args = parse_line(segment);
+    if(!args || !args[0]){
+      fprintf(stderr, "ms: syntax error: missing command near '|'\n");
+      free_pipeline(commands);
+      return NULL;
+    }
+
     commands[num_cmds++] = args;
 
     // increase capacity if needed
@@ -41,6 +62,7 @@ char ***parse_pipeline(char *line) {
       char ***new_commands = realloc(commands, capacity * sizeof(char **));
       if (!new_commands) {
         fprintf(stderr, "ms: memory allocation error\n");
+        free_pipeline(commands);
         exit(EXIT_FAILURE);
       }
       commands = new_commands;

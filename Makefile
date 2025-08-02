@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # source code
-SRC = main.c read_line.c parse_line.c launch_command.c run_command.c builtins.c handle_redirection.c
+SRC = main.c read_line.c parse_line.c launch_command.c run_command.c builtins.c handle_redirection.c pipeline.c
 
 # build rule
 mini_shell: $(SRC)

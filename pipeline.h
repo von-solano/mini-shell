@@ -7,4 +7,7 @@ char ***parse_pipeline(char *line);
 // execute commands in pipeline
 int execute_pipeline(char ***commands);
 
+// free commands in pipeline
+void free_pipeline(char ***tokens);
+
 #endif

@@ -4,8 +4,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#include "builtins.h"
+#include "handle_redirection.h"
 #include "launch_command.h"
 #include "parse_line.h"
+#include "pipeline.h"
 #include "read_line.h"
 #include "run_command.h"
 
@@ -15,20 +18,34 @@ void print_prompt() { printf("\033[1;34mmini_shell>\033[0m "); }
 // loop structure for mini shell
 void ms_loop(void) {
   char* line;
-  char** args;
+  char** args = NULL;
+  char*** pipeline = NULL;
   int status;
 
   // do while-loop (check status variable after)
   do {
     print_prompt();
-    line = read_line();          // read in line from user
-    args = parse_line(line);     // split line into command and arguments
-    status = run_command(args);  // execute command
+    line = read_line(); // read in line from user
 
-    // free variables
+    // check if line contains pipe
+    if(strchr(line, '|') != NULL){
+      pipeline = parse_pipeline(line);
+      if(pipeline){
+        status = execute_pipeline(pipeline);
+        free_pipeline(pipeline);
+      } else {
+        status = 1; // keep shell running if failed
+      }
+    } else {
+      // else no pipes detected
+      args = parse_line(line);     // split line into command and arguments
+      status = run_command(args);  // execute command  
+    }
+
+    // cleanup
     free(line);
-    if (args){
-      for(int i = 0; args[i] != NULL; i++){
+    if (args) {
+      for (int i = 0; args[i] != NULL; i++) {
         free(args[i]);
       }
       free(args);
@@ -41,6 +58,6 @@ int main() {
   printf("\nWelcome to Von's Mini Shell! Type 'help' to get started!\n");
   // run mini shell loop
   ms_loop();
-
+  printf("Mini-Shell Exiting. Goodbye!\n\n");
   return 0;
 }
