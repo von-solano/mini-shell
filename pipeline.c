@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include "parse_line.h"
+#include "pipeline.h"
 
 #define PIPE_BUFFER_SIZE 8  // set initial pipe buffer size
 

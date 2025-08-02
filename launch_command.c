@@ -7,6 +7,8 @@
 #include <unistd.h>
 
 #include "handle_redirection.h"
+#include "launch_command.h"
+
 
 // execute command
 int launch_command(char **args) {

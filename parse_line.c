@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "read_line.h"
+#include "parse_line.h"
+
 
 #define BUFFER_SIZE 64          // set initial buffer size
 #define DELIMITERS " \t\r\n\a"  // delimiters to split arguments from input line

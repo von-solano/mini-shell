@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "handle_redirection.h"
 
 // scanning for redirection
 int handle_redirection(char **args, char **input_file, char **output_file){
