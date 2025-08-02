@@ -2,9 +2,9 @@
 #define PIPELINE_H
 
 // parsing commands in pipeline
-void parse_pipeline(char **args);
+char ***parse_pipeline(char *line);
 
 // execute commands in pipeline
-void execute_pipeline(char **args);
+int execute_pipeline(char ***commands);
 
 #endif
