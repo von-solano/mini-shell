@@ -5,10 +5,10 @@
 // change directory
 int ms_cd(char** args){
     if(args[1] == NULL){
-        fprintf(stderr, "ms: expected argument to \"cd\"\n"); // missing argument
+        fprintf(stderr, RED "ms: " COLOUR_RESET "expected argument to \"cd\"\n"); // missing argument
     } else {
         if(chdir(args[1]) != 0){
-            perror("ms"); // no such file or directory
+            fprintf(stderr, RED "ms: " COLOUR_RESET "no such file or directory\n"); // no such file or directory
         }
     }
     return 1; // keep shell running

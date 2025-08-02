@@ -8,7 +8,7 @@ int handle_redirection(char **args, char **input_file, char **output_file){
 
     // check for input or output file in redirection
     if((strcmp(args[i], "<") == 0 || strcmp(args[i], ">") == 0) && args[i + 1] == NULL){
-      fprintf(stderr, "ms: syntax error near unexpected token '%s'\n", args[i]);
+      fprintf(stderr, RED "ms: " COLOUR_RESET "syntax error near unexpected token '%s'\n", args[i]);
       return 0;
     }
     

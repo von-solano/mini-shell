@@ -17,7 +17,7 @@ char** parse_line(char* line) {
 
   // check if memory allocation failed
   if (!tokens) {
-    fprintf(stderr, "ms: memory allocation error\n");
+    fprintf(stderr, RED "ms: " COLOUR_RESET "memory allocation error\n");
     exit(EXIT_FAILURE);  // exit shell successfully
   }
 
@@ -36,7 +36,7 @@ char** parse_line(char* line) {
 
       // check if reallocation failed
       if (!tokens) {
-        fprintf(stderr, "ms: memory allocation error\n");
+        fprintf(stderr, RED "ms: " COLOUR_RESET "memory allocation error\n");
         exit(EXIT_FAILURE);  // exit shell successfully
       }
     }

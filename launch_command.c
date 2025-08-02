@@ -23,7 +23,7 @@ int launch_command(char **args) {
 
   if (pid < 0) {
     // if fork failed
-    fprintf(stderr, "ms: error forking process\n");
+    fprintf(stderr, RED "ms: " COLOUR_RESET "error forking process\n");
     exit(EXIT_FAILURE);
   } else if (pid == 0) {
     // in child process
@@ -31,7 +31,7 @@ int launch_command(char **args) {
     if (input_file) {
       int fd_in = open(input_file, O_RDONLY);  // open file for reading
       if (fd_in < 0) {
-        fprintf(stderr, "ms: cannot open input file '%s': %s\n", input_file, strerror(errno));
+        fprintf(stderr, RED "ms: " COLOUR_RESET "cannot open input file '%s': %s\n", input_file, strerror(errno));
         exit(EXIT_FAILURE);
       }
       dup2(fd_in, STDIN_FILENO);  // replace stdin with file
@@ -42,7 +42,7 @@ int launch_command(char **args) {
     if (output_file) {
       int fd_out = open(output_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);  // open file for writing
       if (fd_out < 0) {
-        fprintf(stderr, "ms: cannot open output file '%s': %s\n", output_file, strerror(errno));
+        fprintf(stderr, RED "ms: " COLOUR_RESET "cannot open output file '%s': %s\n", output_file, strerror(errno));
         exit(EXIT_FAILURE);
       }
       dup2(fd_out, STDOUT_FILENO);  // replace stdout with file
@@ -52,7 +52,7 @@ int launch_command(char **args) {
     // terminate process and run command
     if (execvp(args[0], args) == -1) {
       // if command failed
-      fprintf(stderr, "ms: %s: command not found\n", args[0]);
+      fprintf(stderr, RED "ms: " COLOUR_RESET "%s: command not found\n", args[0]);
       exit(EXIT_FAILURE);
     }
 

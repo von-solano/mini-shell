@@ -16,7 +16,7 @@ char* read_line(void) {
       exit(EXIT_SUCCESS);  // exit shell successfully
     } else {
       // if reading failed because of some other error
-      perror("readline");
+      fprintf(stderr, RED "ms: " COLOUR_RESET "error reading line\n");
       exit(EXIT_FAILURE);  // exit shell with error code
     }
   }

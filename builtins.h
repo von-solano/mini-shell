@@ -1,6 +1,9 @@
 #ifndef BUILTINS_H
 #define BUILTINS_H
 
+#define RED "\033[1;31m"
+#define COLOUR_RESET "\033[0m"
+
 // function declarations for builtin mini shell commands
 int ms_cd(char** args);
 int ms_help();

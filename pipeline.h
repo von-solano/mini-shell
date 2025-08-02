@@ -1,6 +1,9 @@
 #ifndef PIPELINE_H
 #define PIPELINE_H
 
+#define RED "\033[1;31m"
+#define COLOUR_RESET "\033[0m"
+
 // parsing commands in pipeline
 char ***parse_pipeline(char *line);
 

@@ -31,7 +31,7 @@ char ***parse_pipeline(char *line) {
 
   // check if memory was allocated correctly
   if (!commands) {
-    fprintf(stderr, "ms: memory allocation error\n");
+    fprintf(stderr, RED "ms: " COLOUR_RESET "memory allocation error\n");
     exit(EXIT_FAILURE);
   }
 
@@ -42,7 +42,7 @@ char ***parse_pipeline(char *line) {
     while (*segment == ' ') segment++;  // remove leading whitespaces
 
   if(*segment == '\0'){
-    fprintf(stderr, "ms: syntax error: missing command near '|'\n");
+    fprintf(stderr, RED "ms: " COLOUR_RESET "syntax error: missing command near '|'\n");
     free_pipeline(commands);
     return NULL;
   }
@@ -50,7 +50,7 @@ char ***parse_pipeline(char *line) {
     // parse command segment into parse_line function
     char **args = parse_line(segment);
     if(!args || !args[0]){
-      fprintf(stderr, "ms: syntax error: missing command near '|'\n");
+      fprintf(stderr, RED "ms: " COLOUR_RESET "syntax error: missing command near '|'\n");
       free_pipeline(commands);
       return NULL;
     }
@@ -62,7 +62,7 @@ char ***parse_pipeline(char *line) {
       capacity += PIPE_BUFFER_SIZE;
       char ***new_commands = realloc(commands, capacity * sizeof(char **));
       if (!new_commands) {
-        fprintf(stderr, "ms: memory allocation error\n");
+        fprintf(stderr, RED "ms: " COLOUR_RESET "memory allocation error\n");
         free_pipeline(commands);
         exit(EXIT_FAILURE);
       }
@@ -94,7 +94,7 @@ int execute_pipeline(char ***commands){
   while(commands[i + 1] != NULL){
     // create new pipe
     if(pipe(pipefd) == -1){
-      fprintf(stderr, "ms: pipe creation error\n");
+      fprintf(stderr, RED "ms: " COLOUR_RESET "pipe creation error\n");
       exit(EXIT_FAILURE);
     }
 
@@ -102,19 +102,19 @@ int execute_pipeline(char ***commands){
     pid = fork();
     if(pid < 0){
       // if fork failed
-      fprintf(stderr, "ms: error forking process\n");
+      fprintf(stderr, RED "ms: " COLOUR_RESET "error forking process\n");
       exit(EXIT_FAILURE);
     } else if (pid == 0){
       // in child process
       // redirect stdin to input of previous command (or original stdin)
       if(dup2(in_fd, STDIN_FILENO) == -1){
-        fprintf(stderr, "ms: dup2 input error\n");
+        fprintf(stderr, RED "ms: " COLOUR_RESET "dup2 input error\n");
         exit(EXIT_FAILURE);     
       }
 
       // redirect stdout to write end of current pipe
       if(dup2(pipefd[1], STDOUT_FILENO) == -1){
-        fprintf(stderr, "ms: dup2 output error\n");
+        fprintf(stderr, RED "ms: " COLOUR_RESET "dup2 output error\n");
         exit(EXIT_FAILURE);     
       }
 
@@ -125,7 +125,7 @@ int execute_pipeline(char ***commands){
 
       // execute command
       execvp(commands[i][0], commands[i]);
-      fprintf(stderr, "ms: %s: command not found\n", commands[i][0]);
+      fprintf(stderr, RED "ms: " COLOUR_RESET "%s: command not found\n", commands[i][0]);
       exit(EXIT_FAILURE);
     }
     // in parent process
@@ -140,12 +140,12 @@ int execute_pipeline(char ***commands){
   last_pid = fork();
   if(last_pid < 0){
     // if fork failed
-    fprintf(stderr, "ms: error forking process\n");
+    fprintf(stderr, RED "ms: " COLOUR_RESET "error forking process\n");
     exit(EXIT_FAILURE);  
   } else if (last_pid == 0){
     // in child process
     if(dup2(in_fd, STDIN_FILENO) == -1){
-      fprintf(stderr, "ms: dup2 input error (last)\n");
+      fprintf(stderr, RED "ms: " COLOUR_RESET "dup2 input error (last)\n");
       exit(EXIT_FAILURE);     
     }
 
@@ -153,7 +153,7 @@ int execute_pipeline(char ***commands){
     
     // run commands
     execvp(commands[i][0], commands[i]);
-    fprintf(stderr, "ms: %s: command not found\n", commands[i][0]);
+    fprintf(stderr, RED "ms: " COLOUR_RESET "%s: command not found\n", commands[i][0]);
     exit(EXIT_FAILURE);
   }
   // in parent process

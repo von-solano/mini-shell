@@ -12,8 +12,11 @@
 #include "read_line.h"
 #include "run_command.h"
 
+#define BLUE "\033[1;34m"
+#define COLOUR_RESET "\033[0m"
+
 // function to print mini shell prompt with colour
-void print_prompt() { printf("\033[1;34mmini_shell>\033[0m "); }
+void print_prompt() { printf(BLUE "mini_shell>" COLOUR_RESET " "); }
 
 // loop structure for mini shell
 void ms_loop(void) {
