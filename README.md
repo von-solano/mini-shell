@@ -11,23 +11,26 @@ A Lightweight Unix-style mini shell written in C, designed to replicate basic sh
 
 ## ✅ Features
 - **Command Execution:**
-    Run standard Unix commands with arguments. (e.g. echo hello world, ls -l)
+    Run standard Unix commands with arguments. 
+    Example: echo hello world, ls -l
 
 - **Builtin Commands:**
     Supports 'cd', 'exit', and 'help'.
 
 - **Input/Output Redirection:**
-    Use '<' and '>' to redirect stdin and stdout. (e.g. sort < unsorted.txt > sorted.txt)
+    Use '<' and '>' to redirect stdin and stdout. 
+    Example: sort < unsorted.txt > sorted.txt
 
 - **Pipelines:**
-    Chain commands using pipe operator '|'. (e.g. ls | grep .c | sort)
+    Chain commands using pipe operator '|'.
+    Example: ls | grep .c | sort
 
 - **Coloured Prompts:**
-    Custom bold-coloured 'mini-shell>' prompt and with colour-coded error messages for better UX.
+    Custom bold-coloured 'mini-shell>' prompt with colour-coded error messages for better UX.
     
 - **Modular Design:**
     Seperated functions into clean C modules: 
-    parse_line, run_command, handle_redirection, etc.
+    parse_line, run_command, etc.
 
 ---
 
